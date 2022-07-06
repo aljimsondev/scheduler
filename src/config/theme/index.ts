@@ -24,8 +24,8 @@ export const DarkTheme = {
   dark: true,
   colors: {
     primary: '#620497',
-    background: '#858383',
-    card: '#927b9f',
+    background: '#0a0a0a',
+    card: '#202020;',
     text: '#fffff',
     border: '#7a7a7a',
     notification: '#7a00be',
@@ -37,10 +37,10 @@ export const LightTheme = {
   colors: {
     ...DefaultTheme.colors,
     primary: '#620497',
-    background: '#E9E9E9',
-    card: '#fafafa',
+    background: '#FFFFFF',
+    card: '#ded5df',
     text: '#333333',
-    border: '#dddddd',
+    border: '#3d3d3d',
     notification: '#7a00be',
   },
 };

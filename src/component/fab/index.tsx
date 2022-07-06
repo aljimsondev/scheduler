@@ -1,16 +1,18 @@
-import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import {CustomNode, FABProps} from '../../types';
 
 const FloatingActionButton: CustomNode<FABProps> = ({
   onPress,
   style = styles.container,
   children,
+  activeOpacity = 0.2,
 }) => {
-  const theme = useTheme();
   return (
-    <TouchableOpacity onPress={onPress} style={style}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={style}
+      activeOpacity={activeOpacity}>
       {children}
     </TouchableOpacity>
   );

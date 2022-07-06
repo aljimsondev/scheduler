@@ -32,7 +32,7 @@ public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     // super.onCreate(null); //default for React Navigation
-    SplashScreen.show(this);  // here
+    SplashScreen.show(this,R.style.SplashScreenTheme,false);  // here's for saving splash screen
     super.onCreate(savedInstanceState);
   }
   

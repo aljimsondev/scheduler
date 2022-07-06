@@ -1,16 +1,37 @@
+import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  useColorScheme,
+} from 'react-native';
 import {IconButton} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {Node, ScreenProps} from '../../types';
 import BrandLogo from '../brand';
+import {COLOR} from '../../config/__config';
 
 const Navbar = ({navigation}) => {
+  const scheme = useColorScheme();
+
   return (
-    <View style={style.container}>
+    <View
+      style={[
+        style.container,
+        {
+          backgroundColor: scheme === 'dark' ? COLOR.dark : COLOR.light,
+        },
+      ]}>
       <View style={style.content}>
         <BrandLogo />
       </View>
+      <TouchableOpacity
+        onPress={() => navigation.push('Search')}
+        style={style.button}
+        activeOpacity={0.7}>
+        <FontAwesome name="search" size={20} />
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.push('Settings')}
         style={style.button}
@@ -43,5 +64,6 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0.1)',
     borderRadius: 50,
+    margin: 5,
   },
 });

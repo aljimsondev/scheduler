@@ -1,12 +1,20 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+import Navbar from '../component/navbar';
+import {CustomNode, StackProps, BTProps} from '../types';
 
-function Events() {
+const Events: CustomNode<StackProps<'Events'>> = ({navigation}) => {
   return (
-    <View>
-      <Text>Events</Text>
+    <View style={styles.container}>
+      <Navbar navigation={navigation} />
     </View>
   );
-}
+};
 
 export default Events;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

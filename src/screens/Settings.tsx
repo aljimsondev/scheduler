@@ -1,6 +1,15 @@
 import React from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {CustomNode, StackProps} from '../types';
 
-export default function Settings() {
-  return <View></View>;
-}
+const Settings: CustomNode<StackProps<'Settings'>> = ({navigation}) => {
+  return <View style={style.container}></View>;
+};
+
+export default Settings;
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
