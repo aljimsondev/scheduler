@@ -260,6 +260,7 @@ android {
 }
 
 dependencies {
+    // implementation project(':react-native-alarm-notification') //Added for RN Alarn-Notif
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':react-native-fs') //Added for RNFS
     //noinspection GradleDynamicVersion

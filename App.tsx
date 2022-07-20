@@ -15,11 +15,16 @@ import {
   Text,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import MainScreen from './src/routes/route';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {COLOR} from './src/config/__config';
 import Store from './src/lib/ContextAPI/Store';
-import {Provider as PaperProvider} from 'react-native-paper';
+import {DarkTheme, Provider as PaperProvider} from 'react-native-paper';
+import {
+  combinedDarkTheme,
+  combinedLightTheme,
+  PaperTheme,
+} from './src/config/theme/RNPaperTheme';
+import MainScreen from './src/screens/MainScreen';
 
 function App() {
   const scheme = useColorScheme();
@@ -38,15 +43,16 @@ function App() {
 
   return (
     <Store>
-      <PaperProvider>
-        <GestureHandlerRootView style={{flex: 1, backgroundColor: 'red'}}>
-          <SafeAreaView style={{flex: 1}}>
+      <PaperProvider
+        theme={scheme === 'dark' ? combinedDarkTheme : combinedLightTheme}>
+        <GestureHandlerRootView style={{flex: 1}}>
+          <View style={{flex: 1}}>
             <StatusBar
               backgroundColor={scheme === 'dark' ? COLOR.dark : COLOR.light}
               barStyle={scheme === 'dark' ? 'light-content' : 'dark-content'}
             />
             <MainScreen />
-          </SafeAreaView>
+          </View>
         </GestureHandlerRootView>
       </PaperProvider>
     </Store>

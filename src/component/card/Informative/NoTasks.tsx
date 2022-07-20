@@ -1,10 +1,20 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
+import {Title} from 'react-native-paper';
 
 function NoTasksMessage() {
   return (
     <View style={styles.container}>
-      <Text>No Tasks!</Text>
+      <FastImage
+        source={require('../../../assets/image/nocontent.png')}
+        resizeMode="center"
+        style={{
+          height: 220,
+          width: 300,
+        }}
+      />
+      <Title>No Task Yet!</Title>
     </View>
   );
 }

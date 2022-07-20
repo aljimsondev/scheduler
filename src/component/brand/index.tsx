@@ -24,7 +24,6 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    backgroundColor: '#fff',
   },
   image: {
     height: 80,

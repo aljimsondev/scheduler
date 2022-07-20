@@ -37,7 +37,20 @@ public class MainActivity extends ReactActivity {
   }
   
 
-  //overriding for alarm manager
+  // @Override
+  // protected void onCreate(Bundle savedInstanceState) {
+  //   SplashScreen.show(this,R.style.SplashScreenTheme,false);  // here's for saving splash screen
+  //   super.onCreate(savedInstanceState);
+
+  //   ComponentName receiver = new ComponentName(this, BootReceiver.class);
+  //   PackageManager packageManager = this.getPackageManager();
+
+  //   packageManager.setComponentEnabledSetting(receiver,
+  //           PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+  //           PackageManager.DONT_KILL_APP);
+  // }
+
+  // //overriding for alarm manager
   // @Override
   // protected ReactActivityDelegate createReactActivityDelegate() {
   //   return new ReactActivityDelegate(this, getMainComponentName()){
@@ -54,17 +67,7 @@ public class MainActivity extends ReactActivity {
   //     }
   //   };
   // }
-  //    @Override
-  // protected void onCreate(Bundle savedInstanceState) {
-  //   super.onCreate(savedInstanceState);
 
-  //   ComponentName receiver = new ComponentName(this, BootReceiver.class);
-  //   PackageManager packageManager = this.getPackageManager();
-
-  //   packageManager.setComponentEnabledSetting(receiver,
-  //           PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-  //           PackageManager.DONT_KILL_APP);
-  // }
 
 
   public static class MainActivityDelegate extends ReactActivityDelegate {

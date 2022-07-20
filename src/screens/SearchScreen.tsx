@@ -1,12 +1,15 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+import {Appbar, Searchbar} from 'react-native-paper';
 
 function SearchScreen() {
-  return (
-    <View>
-      <Text>Sar</Text>
-    </View>
-  );
+  return <View style={styles.container}></View>;
 }
 
 export default SearchScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

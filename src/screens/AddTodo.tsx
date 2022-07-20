@@ -1,18 +1,16 @@
-import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {
   StyleSheet,
   View,
   Text,
   TextInput,
-  useColorScheme,
   Switch,
   ScrollView,
 } from 'react-native';
-import {IconButton, Snackbar} from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import moment from 'moment';
 import FaIcon from 'react-native-vector-icons/FontAwesome';
-import {CustomNode, StackProps, TaskType} from '../types';
+import {CustomNode, StackProps} from '../types';
 
 import {DateTimePickerAndroid} from '@react-native-community/datetimepicker';
 import {OnChangeHandler} from '../lib/onTextChangeHandler';
@@ -21,16 +19,12 @@ import {defaultTask} from '../config/defaults';
 
 const AddTodo: CustomNode<StackProps<'AddTodo'>> = ({navigation}) => {
   const {task, setTask, tasks} = React.useContext(Context);
-  const [showSnackBar, setShowSnackBar] = React.useState<boolean>(false);
-  const theme = useTheme();
-  const scheme = useColorScheme();
-
-  const dissmissSnackBar = () => {
-    setShowSnackBar(false);
-  };
 
   const showPicker = (mode: 'date' | 'time') => {
     return DateTimePickerAndroid.open({
+      style: {
+        backgroundColor: 'red',
+      },
       value: new Date(task.date),
       onChange: e => {
         if (e.type === 'set') {
@@ -54,17 +48,9 @@ const AddTodo: CustomNode<StackProps<'AddTodo'>> = ({navigation}) => {
   };
   React.useEffect(() => {
     //if new tasks is added we reset all the task fields
-    //set the id to new ID
-
-    isAddedNewTodo();
-
     return () => {
       setTask(defaultTask);
     };
-  }, [tasks]);
-
-  const isAddedNewTodo = React.useCallback(() => {
-    setShowSnackBar(true);
   }, [tasks]);
 
   return (
@@ -201,7 +187,7 @@ const styles = StyleSheet.create({
   time: {
     marginLeft: 20,
     flexGrow: 1,
-    fontWeight: '800',
+    // fontWeight: '800',
     fontSize: 18,
   },
   repeatWrapper: {

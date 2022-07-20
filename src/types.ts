@@ -1,11 +1,13 @@
 import {MaterialBottomTabScreenProps} from '@react-navigation/material-bottom-tabs';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {Key} from 'react';
 import {
   ColorValue,
   GestureResponderEvent,
   StyleProp,
   ViewStyle,
 } from 'react-native';
+import {IconSource} from 'react-native-paper/lib/typescript/components/Icon';
 
 export type TaskType = {
   id: string;
@@ -19,6 +21,36 @@ export type TaskType = {
 export type Snackbar = {
   open: boolean;
   message: string;
+};
+
+export type CustomColorValue = 'warning' | 'default' | 'primary' | 'secondary';
+
+type CustomComponentMode = 'outlined' | 'contained' | 'text';
+
+type DialogActionType = {
+  onPress: () => void;
+  label: string;
+  options?: {
+    color?: CustomColorValue;
+    mode?: CustomComponentMode;
+  };
+};
+
+export type CustomComponent<T> = (props: T) => JSX.Element;
+
+export type DialogButtonProps = {
+  label: string;
+  color?: CustomColorValue;
+  mode?: CustomComponentMode;
+  onPress?: () => void;
+};
+
+export type Dialog = {
+  visible: boolean;
+  title: string;
+  icon?: null | string;
+  content: null | JSX.Element;
+  actions: DialogActionType[];
 };
 
 export type OnChangeTextHandlerType<S = TaskType> = (
@@ -51,9 +83,15 @@ export type TaskCardProps = {
 export type RootStackParamList = {
   Home: undefined;
   AddTodo: undefined;
-  TaskOption?: TaskType;
+  TaskOption: {
+    task: TaskType;
+  };
   Settings: undefined;
   Events: undefined;
+  Search: undefined;
+  TaskUpdate: {
+    id: string;
+  };
 };
 
 export type RootBottomTabParamList = {
@@ -87,3 +125,18 @@ type CustomModalProps = {
 
 //modals
 export type CustomModal = (props: CustomModalProps) => JSX.Element;
+
+//Animated FAB
+
+type AnimatedFABProps = {
+  style?: ViewStyle;
+  extended: boolean;
+  label?: string;
+  onPress?: () => void;
+  icon: IconSource;
+  collapsable?: boolean;
+  iconMode?: 'dynamic' | 'static';
+  animateFrom?: 'right' | 'left';
+};
+
+export type AnimatedFABType = (props: AnimatedFABProps) => JSX.Element;

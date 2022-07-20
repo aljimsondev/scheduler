@@ -1,4 +1,3 @@
-import {UID} from '../lib/IDGenerator';
 import {TaskType} from '../types';
 
 export const defaultTask: TaskType = {

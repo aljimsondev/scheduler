@@ -1,13 +1,19 @@
 import React from 'react';
 import {defaultTask} from '../../../config/defaults';
-import {Snackbar, TaskType} from '../../../types';
+import {Dialog, Snackbar, TaskType} from '../../../types';
 import {UID} from '../../IDGenerator';
-import {defaults, defaultSnackbarStatus} from '../defaultValues';
+import {
+  defaultDialogStatus,
+  defaults,
+  defaultSnackbarStatus,
+} from '../defaultValues';
+import {DialogReducer} from '../Reducers/DialogReducer';
 import {SnackbarReducer} from '../Reducers/SnackbarReducer';
-import {TaskReducer} from '../Reducers/TaskReducer';
+import {getItem, TaskReducer} from '../Reducers/TaskReducer';
 import {
   ContextStore,
   ContextValuesType,
+  DialogReducerType,
   SnackbarReducerType,
   TaskReducerType,
 } from '../types';
@@ -28,22 +34,21 @@ const Store: ContextStore = ({children}) => {
   >(SnackbarReducer, defaultSnackbarStatus, () => {
     return defaultSnackbarStatus;
   });
+  const [dialog, dispatchDialog] = React.useReducer<DialogReducerType, Dialog>(
+    DialogReducer,
+    defaultDialogStatus,
+    () => {
+      return defaultDialogStatus;
+    },
+  );
   const [task, setTask] = React.useState<TaskType>(defaultTask);
-
-  const fetchTasks = React.useCallback(() => {
-    //do fetching for tasks
-  }, []);
-
-  React.useEffect(() => {
-    //get all tasks
-    fetchTasks();
-    return () => {
-      //clean up function
-    };
-  }, []);
 
   const dismissSnackBar = React.useCallback(() => {
     dispatchSnackbar({type: 'RESET_STATUS', payload: defaultSnackbarStatus});
+  }, []);
+
+  const dismissDialog = React.useCallback(() => {
+    dispatchDialog({type: 'RESET_STATUS', payload: defaultDialogStatus});
   }, []);
 
   return (
@@ -55,8 +60,11 @@ const Store: ContextStore = ({children}) => {
           task: task,
           setTask: setTask,
           snackbar: snackbar,
+          dialog: dialog,
           dispatchSnackbar: dispatchSnackbar,
           dismissSnackbar: dismissSnackBar,
+          dispatchDialog: dispatchDialog,
+          dismissDialog: dismissDialog,
         }}>
         {children}
       </Context.Provider>
